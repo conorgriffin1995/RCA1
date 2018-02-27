@@ -1,4 +1,4 @@
-cardiology <- read.table(file="C:/student/ENTDATABASETECHCA/CardiologyRel.csv", stringsAsFactors=FALSE, sep=",", header=TRUE)
+cardiology <- read.table(file="C:/CardiologyRel.csv", stringsAsFactors=FALSE, sep=",", header=TRUE)
 
 # show the first 10 records
 head(cardiology)
@@ -16,3 +16,5 @@ ZZ
 # Good for getting a rough idea of proportions
 pie(ZZ, labels=names(ZZ), edges=200, col=c("yellow","red","navy","green"), radius=
       0.9)
+
+
