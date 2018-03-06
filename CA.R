@@ -18,16 +18,36 @@ pie(ZZ, labels=names(ZZ), edges=200, col=c("yellow","red","navy","green"), radiu
       0.9)
 
 # Finding MAX 
-max(cardiology$age, na.rm=TRUE) # column 1
-#(Not sure how to find with binary data) max(cardiology$sex)
+max(cardiology$age, na.rm=TRUE)
+max(cardiology$sex, na.rm=TRUE)
+max(cardiology$cp, na.rm=TRUE)
 max(cardiology$trestbps, na.rm=TRUE)
 max(cardiology$cholesterol, na.rm = TRUE)
+max(cardiology$Fasting.blood.sugar...120, na.rm=TRUE)
+max(cardiology$restecg, na.rm = TRUE)
 max(cardiology$diastbpexerc, na.rm = TRUE)
 max(cardiology$thalach, na.rm = TRUE)
+max(cardiology$exang, na.rm = TRUE)
+max(cardiology$oldpeak, na.rm=TRUE)
+max(cardiology$slope, na.rm = TRUE)
+max(cardiology$ca, na.rm = TRUE)
+max(cardiology$thal, na.rm = TRUE)
+max(cardiology$class, na.rm = TRUE)
 
 # Finding MEAN 
-result.mean <- mean(cardiology$cholesterol, na.rm = TRUE, trim=0)
-print(result.mean)
-
-
+mean(cardiology$age, na.rm = TRUE)
+mean(cardiology$sex, na.rm = TRUE)
+mean(cardiology$cp, na.rm = TRUE)
+mean(cardiology$trestbps, na.rm = TRUE)
+mean(cardiology$cholesterol, na.rm = TRUE)
+mean(cardiology$Fasting.blood.sugar...120, na.rm = TRUE)
+mean(cardiology$restecg, na.rm = TRUE)
+mean(cardiology$diastbpexerc, na.rm = TRUE)
+mean(cardiology$thalach, na.rm = TRUE)
+mean(cardiology$exang, na.rm = TRUE)
+mean(cardiology$oldpeak, na.rm = TRUE)
+mean(cardiology$slope, na.rm = TRUE)
+mean(cardiology$ca, na.rm = TRUE)
+mean(cardiology$thal, na.rm = TRUE)
+mean(cardiology$class, na.rm = TRUE)
 
