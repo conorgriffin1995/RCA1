@@ -51,3 +51,11 @@ mean(cardiology$ca, na.rm = TRUE)
 mean(cardiology$thal, na.rm = TRUE)
 mean(cardiology$class, na.rm = TRUE)
 
+# Finding Mode
+Mode <- function(cardiology){
+  ux <- unique(cardiology)
+  ux[which.max(tabulate(match(cardiology, ux)))]
+}
+
+Mode
+

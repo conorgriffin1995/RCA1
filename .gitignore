@@ -1,2 +1,5 @@
-/ .Rhistory
-/ .RData
+# History files
+.Rhistory
+
+# Session Data files
+.RData
