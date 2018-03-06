@@ -1,4 +1,4 @@
-cardiology <- read.table(file="C:/CardiologyRel.csv", stringsAsFactors=FALSE, sep=",", header=TRUE)
+cardiology <- read.table(file="C:/RCA1/CardiologyRel.csv", stringsAsFactors=FALSE, sep=",", header=TRUE)
 
 # show the first 10 records
 head(cardiology)
@@ -16,5 +16,18 @@ ZZ
 # Good for getting a rough idea of proportions
 pie(ZZ, labels=names(ZZ), edges=200, col=c("yellow","red","navy","green"), radius=
       0.9)
+
+# Finding MAX 
+max(cardiology$age, na.rm=TRUE) # column 1
+#(Not sure how to find with binary data) max(cardiology$sex)
+max(cardiology$trestbps, na.rm=TRUE)
+max(cardiology$cholesterol, na.rm = TRUE)
+max(cardiology$diastbpexerc, na.rm = TRUE)
+max(cardiology$thalach, na.rm = TRUE)
+
+# Finding MEAN 
+result.mean <- mean(cardiology$cholesterol, na.rm = TRUE, trim=0)
+print(result.mean)
+
 
 

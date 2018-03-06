@@ -5,7 +5,7 @@ age,sex,cp,trestbps,cholesterol,Fasting blood sugar < 120,restecg,diastbpexerc,t
 63,Male, Asymptomatic,130,254,FALSE,Hyp,83.2,147,FALSE,1.4,Flat,1,Rev,Sick
 53,Male,Asymptomatic,140,203,TRUE,Hyp,89.6,155,TRUE,3.1,Down,0,Rev,Sick
 58,Female,Angina,150,283,TRUE,Hyp,96,162,FALSE,1,Up,0,Normal,Healthy
-58,Male,Abnormal Angina,120,NA,FALSE,Hyp,76.8,160,FALSE,1.8,Flat,0,Normal,Sick
+58,Male,Abnormal Angina,120,NA(MEAN:246),FALSE,Hyp,76.8,160,FALSE,1.8,Flat,0,Normal,Sick
 58,Male,NoTang,132,224,FALSE,Hyp,84.48,173,FALSE,3.2,Up,2,Rev,Sick
 58,Male,NoTang,132,224,FALSE,Hyp,84.48,173,FALSE,3.2,Up,2,Rev,Sick
 63,Male,Angina,145,233,TRUE,Hyp,92.8,150,FALSE,2.3,Down,0,Fix,Healthy
@@ -15,22 +15,22 @@ age,sex,cp,trestbps,cholesterol,Fasting blood sugar < 120,restecg,diastbpexerc,t
 41,Female,Abnormal Angina,130,204,FALSE,Hyp,83.2,172,FALSE,1.4,Up,0,Normal,Healthy
 56,Male,Abnormal Angina,120,236,FALSE,Normal,76.8,178,FALSE,0.8,Up,0,Normal,Healthy
 62,Female,Asymptomatic,140,268,FALSE,Hyp,89.6,160,FALSE,3.6,Down,2,Normal,Sick
-57,f,Asymptomatic,120,354,FALSE,Normal,76.8,163,TRUE,0.6,Up,0,Normal,Healthy
+57,Female,Asymptomatic,120,354,FALSE,Normal,76.8,163,TRUE,0.6,Up,0,Normal,Healthy
 57,Male,Asymptomatic,140,192,FALSE,Normal,89.6,148,FALSE,0.4,Flat,0,Fix,Healthy
 56,Female,Abnormal Angina,140,294,FALSE,Hyp,89.6,153,FALSE,1.3,Flat,0,Normal,Healthy
 56,Male,NoTang,130,256,TRUE,Hyp,83.2,142,TRUE,0.6,Flat,1,Fix,Sick
-44,Male,Abnormal Angina,120,NA,FALSE,Normal,76.8,173,FALSE,0,Up,0,Rev,Healthy
+44,Male,Abnormal Angina,120,NA(MEAN:246),FALSE,Normal,76.8,173,FALSE,0,Up,0,Rev,Healthy
 50,Female,NoTang,120,219,FALSE,Normal,76.8,158,FALSE,1.6,Flat,0,Normal,Healthy
 58,Female,NoTang,120,340,FALSE,Normal,76.8,172,FALSE,0,Up,0,Normal,Healthy
 66,Female,Angina,150,226,FALSE,Normal,96,114,FALSE,2.6,Down,0,Normal,Healthy
-43,m,Asymptomatic,150,247,FALSE,Normal,96,171,FALSE,1.5,Up,0,Normal,Healthy
+43,Male,Asymptomatic,150,247,FALSE,Normal,96,171,FALSE,1.5,Up,0,Normal,Healthy
 40,Male,Asymptomatic,110,167,FALSE,Hyp,87,114,TRUE,2,Flat,0,Rev,Sick
 69,Female,Angina,140,239,FALSE,Normal,89.6,151,FALSE,1.8,Up,2,Normal,Healthy
 60,Male, Asymptomatic,117,230,TRUE,Normal,74.88,160,TRUE,1.4,Up,2,Rev,Sick
 64,Male,NoTang,140,335,FALSE,Normal,89.6,158,FALSE,0,Up,0,Normal,Sick
 59,Male,Asymptomatic,135,234,FALSE,Normal,86.4,161,FALSE,0.5,Flat,0,Rev,Healthy
 44,Male,NoTang,130,233,FALSE,Normal,83.2,179,TRUE,0.4,Up,0,Normal,Healthy
-42,m,Asymptomatic,140,226,FALSE,Normal,89.6,178,FALSE,0,Up,0,Normal,Healthy
+42,Male,Asymptomatic,140,226,FALSE,Normal,89.6,178,FALSE,0,Up,0,Normal,Healthy
 43,Male, Asymptomatic,120,177,FALSE,Hyp,76.8,120,TRUE,2.5,Flat,0,Rev,NA
 57,Male,Asymptomatic,150,276,FALSE,Hyp,96,112,TRUE,0.6,Flat,1,Fix,Sick
 55,Male, Asymptomatic,132,353,FALSE,Normal,84.48,132,TRUE,1.2,Flat,1,Rev,Sick
@@ -40,7 +40,7 @@ age,sex,cp,trestbps,cholesterol,Fasting blood sugar < 120,restecg,diastbpexerc,t
 40,Male,Angina,140,199,FALSE,Normal,89.6,178,TRUE,1.4,Up,0,Rev,Healthy
 21,Female,Abnormal Angina,160,302,FALSE,Normal,102.4,162,FALSE,0.4,Up,2,Normal,Healthy
 59,Male,NoTang,150,212,TRUE,Normal,96,157,FALSE,1.6,Up,0,Normal,Healthy
-61,f, Asymptomatic,130,330,FALSE,Hyp,83.2,169,FALSE,0,Up,0,Normal,Sick
+61,Female, Asymptomatic,130,330,FALSE,Hyp,83.2,169,FALSE,0,Up,0,Normal,Sick
 58,Male,NoTang,112,230,FALSE,Hyp,71.68,165,FALSE,2.5,Flat,1,Rev,Sick
 51,Male,NoTang,110,175,FALSE,Normal,70.4,123,FALSE,0.6,Up,0,Normal,Healthy
 50,Male,Asymptomatic,150,243,FALSE,Hyp,96,128,FALSE,2.6,Flat,0,Rev,Sick
