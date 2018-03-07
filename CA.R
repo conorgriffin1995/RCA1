@@ -34,6 +34,23 @@ max(cardiology$ca, na.rm = TRUE)
 max(cardiology$thal, na.rm = TRUE)
 max(cardiology$class, na.rm = TRUE)
 
+# Finding MIN 
+min(cardiology$age, na.rm=TRUE)
+min(cardiology$sex, na.rm=TRUE)
+min(cardiology$cp, na.rm=TRUE)
+min(cardiology$trestbps, na.rm=TRUE)
+min(cardiology$cholesterol, na.rm = TRUE)
+min(cardiology$Fasting.blood.sugar...120, na.rm=TRUE)
+min(cardiology$restecg, na.rm=TRUE)
+min(cardiology$diastbpexerc, na.rm = TRUE)
+min(cardiology$thalach, na.rm = TRUE)
+min(cardiology$exang, na.rm=TRUE)
+min(cardiology$oldpeak, na.rm=TRUE)
+min(cardiology$slope, na.rm=TRUE)
+min(cardiology$ca, na.rm=TRUE)
+min(cardiology$thal, na.rm=TRUE)
+min(cardiology$class, na.rm=TRUE)
+
 # Finding MEAN 
 mean(cardiology$age, na.rm = TRUE)
 mean(cardiology$sex, na.rm = TRUE)
@@ -54,8 +71,30 @@ mean(cardiology$class, na.rm = TRUE)
 # Finding Mode
 Mode <- function(cardiology){
   ux <- unique(cardiology)
-  ux[which.max(tabulate(match(cardiology, ux)))]
+  return (ux[which.max(tabulate(match(cardiology, ux)))])
 }
 
 Mode
+
+# Finding Median
+median(cardiology$age, na.rm=TRUE)
+median(cardiology$sex, na.rm=TRUE)
+median(cardiology$cp, na.rm=TRUE)
+median(cardiology$trestbps, na.rm=TRUE)
+median(cardiology$cholesterol, na.rm = TRUE)
+median(cardiology$restecg, na.rm=TRUE)
+median(cardiology$diastbpexerc, na.rm = TRUE)
+median(cardiology$thalach, na.rm = TRUE)
+median(cardiology$exang, na.rm=TRUE)
+median(cardiology$oldpeak, na.rm=TRUE)
+median(cardiology$slope, na.rm=TRUE)
+median(cardiology$ca, na.rm=TRUE)
+median(cardiology$thal, na.rm=TRUE)
+median(cardiology$class, na.rm=TRUE)
+
+#Finding Mode
+
+
+
+
 
