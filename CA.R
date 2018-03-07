@@ -16,6 +16,22 @@ ZZ
 # Good for getting a rough idea of proportions
 pie(ZZ, labels=names(ZZ), edges=200, col=c("yellow","red","navy","green"), radius=
       0.9)
+# % of missing values
+sum(is.na(cardiology$age))
+sum(is.na(cardiology$sex))
+sum(is.na(cardiology$cp))
+sum(is.na(cardiology$trestbps))
+sum(is.na(cardiology$cholesterol))
+sum(is.na(cardiology$Fasting.blood.sugar...120))
+sum(is.na(cardiology$restecg))
+sum(is.na(cardiology$diastbpexerc))
+sum(is.na(cardiology$thalach))
+sum(is.na(cardiology$exang))
+sum(is.na(cardiology$oldpeak))
+sum(is.na(cardiology$slope))
+sum(is.na(cardiology$ca))
+sum(is.na(cardiology$thal))
+sum(is.na(cardiology$class))
 
 # Finding MAX 
 max(cardiology$age, na.rm=TRUE)
@@ -68,13 +84,27 @@ mean(cardiology$ca, na.rm = TRUE)
 mean(cardiology$thal, na.rm = TRUE)
 mean(cardiology$class, na.rm = TRUE)
 
-# Finding Mode
+# Finding Mode Function
 Mode <- function(cardiology){
   ux <- unique(cardiology)
   return (ux[which.max(tabulate(match(cardiology, ux)))])
 }
 
-Mode
+Mode(cardiology$age)
+Mode(cardiology$sex)
+Mode(cardiology$cp)
+Mode(cardiology$trestbps)
+Mode(cardiology$cholesterol)
+Mode(cardiology$Fasting.blood.sugar...120)
+Mode(cardiology$restecg)
+Mode(cardiology$diastbpexerc)
+Mode(cardiology$thalach)
+Mode(cardiology$exang)
+Mode(cardiology$oldpeak)
+Mode(cardiology$slope)
+Mode(cardiology$ca)
+Mode(cardiology$thal)
+Mode(cardiology$class)
 
 # Finding Median
 median(cardiology$age, na.rm=TRUE)
@@ -92,7 +122,23 @@ median(cardiology$ca, na.rm=TRUE)
 median(cardiology$thal, na.rm=TRUE)
 median(cardiology$class, na.rm=TRUE)
 
-#Finding Mode
+#Finding Standard Deviation
+sd(cardiology$age)
+sd(cardiology$sex)
+sd(cardiology$cp)
+sd(cardiology$trestbps)
+sd(cardiology$cholesterol)
+sd(cardiology$Fasting.blood.sugar...120)
+sd(cardiology$restecg)
+sd(cardiology$diastbpexerc)
+sd(cardiology$thalach)
+sd(cardiology$exang)
+sd(cardiology$oldpeak)
+sd(cardiology$slope)
+sd(cardiology$ca)
+sd(cardiology$thal)
+sd(cardiology$class)
+
 
 
 
