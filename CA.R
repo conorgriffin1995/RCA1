@@ -139,6 +139,23 @@ sd(cardiology$ca)
 sd(cardiology$thal)
 sd(cardiology$class)
 
+# Histogram for Age
+ggplot(cardiology, aes(x = age)) + geom_histogram(col="black", fill="red", binwidth = 2) + ggtitle("Age of patients") + labs(x = "Age of patients", y = "Number of patients") + theme_bw()
+
+# Histogram for Trestbps (Resting blood pressure of patients)
+ggplot(cardiology, aes(x = trestbps)) + geom_histogram(col="black", fill="seagreen2", binwidth = 2) + ggtitle("Resting blood pressure of patients") + labs(x = "Resting blood pressure of patients", y = "Number of patients") + theme_bw()
+
+# Histogram for Cholesterol
+ggplot(cardiology, aes(x = cholesterol)) + geom_histogram(col="black", fill="deepskyblue1") + ggtitle("Cholesterol of patients") + labs(x = "Cholesterol of patients", y = "Number of patients") + theme_bw()
+
+# Histogram for Diastbpexerc (Diastolic blood pressure of patients)
+ggplot(cardiology, aes(x = diastbpexerc)) + geom_histogram(col="black", fill="gold1", binwidth = 2) + ggtitle("Diastolic blood pressure of patients") + labs(x = "Diastolic blood pressure of patients", y = "Number of patients") + theme_bw()
+
+# Histogram for Thalach (Maximum heart rate achieved for patients)
+ggplot(cardiology, aes(x = thalach)) + geom_histogram(col="black", fill="chocolate2", binwidth = 2) + ggtitle("Maximum heart rate achieved for patients") + labs(x = "Maximum heart rate achieved for patients", y = "Number of patients") + theme_bw()
+
+# Histogram for Oldpeak (ST depression induced by exercise relative to rest of patients)
+ggplot(cardiology, aes(x = age)) + geom_histogram(col="black", fill="red", binwidth = 2) + ggtitle("ST depression induced by exercise relative to rest of patients") + labs(x = "ST depression induced by exercise relative to rest of patients", y = "Number of patients") + theme_bw()
 
 
 
