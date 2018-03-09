@@ -16,6 +16,8 @@ ZZ
 # Good for getting a rough idea of proportions
 pie(ZZ, labels=names(ZZ), edges=200, col=c("yellow","red","navy","green"), radius=
       0.9)
+
+# Part 1 Question 1 B
 # % of missing values
 sum(is.na(cardiology$age))
 sum(is.na(cardiology$sex))
@@ -33,6 +35,7 @@ sum(is.na(cardiology$ca))
 sum(is.na(cardiology$thal))
 sum(is.na(cardiology$class))
 
+# Part 1 Question 1 B
 # Finding MAX 
 max(cardiology$age, na.rm=TRUE)
 max(cardiology$sex, na.rm=TRUE)
@@ -50,6 +53,7 @@ max(cardiology$ca, na.rm = TRUE)
 max(cardiology$thal, na.rm = TRUE)
 max(cardiology$class, na.rm = TRUE)
 
+# Part 1 Question 1 B
 # Finding MIN 
 min(cardiology$age, na.rm=TRUE)
 min(cardiology$sex, na.rm=TRUE)
@@ -67,6 +71,7 @@ min(cardiology$ca, na.rm=TRUE)
 min(cardiology$thal, na.rm=TRUE)
 min(cardiology$class, na.rm=TRUE)
 
+# Part 1 Question 1 B
 # Finding MEAN 
 mean(cardiology$age, na.rm = TRUE)
 mean(cardiology$sex, na.rm = TRUE)
@@ -84,6 +89,7 @@ mean(cardiology$ca, na.rm = TRUE)
 mean(cardiology$thal, na.rm = TRUE)
 mean(cardiology$class, na.rm = TRUE)
 
+# Part 1 Question 1 B
 # Finding Mode Function
 Mode <- function(cardiology){
   ux <- unique(cardiology)
@@ -106,6 +112,7 @@ Mode(cardiology$ca)
 Mode(cardiology$thal)
 Mode(cardiology$class)
 
+# Part 1 Question 1 B
 # Finding Median
 median(cardiology$age, na.rm=TRUE)
 median(cardiology$sex, na.rm=TRUE)
@@ -122,6 +129,7 @@ median(cardiology$ca, na.rm=TRUE)
 median(cardiology$thal, na.rm=TRUE)
 median(cardiology$class, na.rm=TRUE)
 
+# Part 1 Question 1 B
 #Finding Standard Deviation
 sd(cardiology$age)
 sd(cardiology$sex)
@@ -139,6 +147,7 @@ sd(cardiology$ca)
 sd(cardiology$thal)
 sd(cardiology$class)
 
+# Part 1 Question 1 E
 # Skewness and type
 skewness(cardiology$age)
 skewness(cardiology$trestbps)
@@ -148,19 +157,16 @@ skewness(cardiology$thalach)
 skewness(cardiology$oldpeak)
 skewness(cardiology$ca)
 
-
+# Part 1 Question 1 F
+# 1 indicates a strong positive relationship.
+# -1 indicates a strong negative relationship.
+# A result of zero indicates no relationship at all.
 # level of correlation for age with other predictor variables
 cor(cardiology$age, cardiology$trestbps)
 cor(cardiology$age, cardiology$cholesterol, use = "complete.obs")
 cor(cardiology$age, cardiology$thalach)
 cor(cardiology$age, cardiology$oldpeak)
 cor(cardiology$age, cardiology$diastbpexerc)
-
-ggplot(cardiology, aes(x=age, y=trestbps)) + geom_point()
-ggplot(cardiology, aes(x=age, y=cholesterol)) + geom_point()
-ggplot(cardiology, aes(x=age, y=thalach)) + geom_point()
-ggplot(cardiology, aes(x=age, y=oldpeak)) + geom_point()
-ggplot(cardiology, aes(x=age, y=diastbpexerc)) + geom_point()
 
 # level of correlation for trestbps with other predictor variables
 cor(cardiology$trestbps, cardiology$age)
@@ -169,30 +175,27 @@ cor(cardiology$trestbps, cardiology$thalach)
 cor(cardiology$trestbps, cardiology$oldpeak)
 cor(cardiology$trestbps, cardiology$diastbpexerc)
 
-ggplot(cardiology, aes(x=trestbps, y=age)) + geom_point()
-ggplot(cardiology, aes(x=trestbps, y=cholesterol)) + geom_point()
-ggplot(cardiology, aes(x=trestbps, y=thalach)) + geom_point()
-ggplot(cardiology, aes(x=trestbps, y=oldpeak)) + geom_point()
-ggplot(cardiology, aes(x=trestbps, y=diastbpexerc)) + geom_point()
-
 # level of correlation for diastbpexerc with other predictor variables
 cor(cardiology$diastbpexerc, cardiology$age)
 cor(cardiology$diastbpexerc, cardiology$trestbps)
 cor(cardiology$diastbpexerc, cardiology$cholesterol, use = "complete.obs")
 cor(cardiology$diastbpexerc, cardiology$thalach)
 cor(cardiology$diastbpexerc, cardiology$oldpeak)
+
 # level of correlation for thalach with other predictor variables
 cor(cardiology$thalach, cardiology$age)
 cor(cardiology$thalach, cardiology$trestbps)
 cor(cardiology$thalach, cardiology$cholesterol, use = "complete.obs")
 cor(cardiology$thalach, cardiology$diastbpexerc)
 cor(cardiology$thalach, cardiology$oldpeak)
+
 # level of correlation for oldpeak with other predictor variables
 cor(cardiology$oldpeak, cardiology$age)
 cor(cardiology$oldpeak, cardiology$trestbps)
 cor(cardiology$oldpeak, cardiology$cholesterol, use = "complete.obs")
 cor(cardiology$oldpeak, cardiology$diastbpexerc)
 cor(cardiology$oldpeak, cardiology$thalach)
+
 # level of correlation  for cholesterol with other predictor variables
 cor(cardiology$cholesterol, cardiology$age, use = "complete.obs")
 cor(cardiology$cholesterol, cardiology$trestbps, use = "complete.obs")
@@ -200,7 +203,7 @@ cor(cardiology$cholesterol, cardiology$thalach, use = "complete.obs")
 cor(cardiology$cholesterol, cardiology$oldpeak, use = "complete.obs")
 cor(cardiology$cholesterol, cardiology$diastbpexerc, use = "complete.obs")
 
-
+# Part 1 Question 2
 # Histogram for each numerical variable, with an overlay of the target variable
 # Histogram for Age
 ggplot(cardiology, aes(x = age, fill = class)) + geom_histogram() + ggtitle("Age of patients") + labs(x = "Age of patients", y = "Number of patients") + theme_bw()
@@ -220,8 +223,7 @@ ggplot(cardiology, aes(x = thalach, fill = class)) + geom_histogram() + ggtitle(
 # Histogram for Oldpeak (ST depression induced by exercise relative to rest of patients)
 ggplot(cardiology, aes(x = oldpeak, fill = class)) + geom_histogram() + ggtitle("ST depression induced by exercise relative to rest of patients") + labs(x = "ST depression induced by exercise relative to rest of patients", y = "Number of patients") + theme_bw()
 
-
-
+# Part 1 Question 3
 # BarChart for each categorical variable,with an overlay of the target variable
 # Bar chart for each sex
 ggplot(cardiology, aes(x = sex, fill = class)) + geom_bar() + ggtitle("Sex of patients") + labs(x = "Sex of patient", y = "Number of patients") + theme_bw()
@@ -244,9 +246,97 @@ ggplot(cardiology, aes(x = slope, fill = class)) + geom_bar() + ggtitle("The slo
 # Bar chart for each thal
 ggplot(cardiology, aes(x = thal, fill = class)) + geom_bar() + ggtitle("Thal") + labs(x = "Thal", y = "Number of patients") + theme_bw()
 
+# Part 1 Question 4
 # Detect outliers in numerical variables
 cardiologyNumeric <- read.table(file="C:/RCA1/CardiologyNumeric.csv", stringsAsFactors=FALSE, sep=",", header=TRUE)
 outlier(cardiologyNumeric)
+
+# Part 1 Question 5 A
+# Investigate whether there are any correlated variables. Using Scatter Plots
+# Age plots
+ggplot(cardiology, aes(x=age, y=trestbps)) + geom_point()
+ggplot(cardiology, aes(x=age, y=cholesterol)) + geom_point()
+ggplot(cardiology, aes(x=age, y=thalach)) + geom_point()
+ggplot(cardiology, aes(x=age, y=oldpeak)) + geom_point()
+ggplot(cardiology, aes(x=age, y=diastbpexerc)) + geom_point()
+
+# trestbps plots
+ggplot(cardiology, aes(x=trestbps, y=age)) + geom_point()
+ggplot(cardiology, aes(x=trestbps, y=cholesterol)) + geom_point()
+ggplot(cardiology, aes(x=trestbps, y=thalach)) + geom_point()
+ggplot(cardiology, aes(x=trestbps, y=oldpeak)) + geom_point()
+ggplot(cardiology, aes(x=trestbps, y=diastbpexerc)) + geom_point()
+
+# diastbpexerc plots
+ggplot(cardiology, aes(x=diastbpexerc, y=age)) + geom_point()
+ggplot(cardiology, aes(x=diastbpexerc, y=trestbps)) + geom_point()
+ggplot(cardiology, aes(x=diastbpexerc, y=cholesterol)) + geom_point()
+ggplot(cardiology, aes(x=diastbpexerc, y=thalach)) + geom_point()
+ggplot(cardiology, aes(x=diastbpexerc, y=oldpeak)) + geom_point()
+
+# thalach plots
+ggplot(cardiology, aes(x=thalach, y=age)) + geom_point()
+ggplot(cardiology, aes(x=thalach, y=trestbps)) + geom_point()
+ggplot(cardiology, aes(x=thalach, y=cholesterol)) + geom_point()
+ggplot(cardiology, aes(x=thalach, y=diastbpexerc)) + geom_point()
+ggplot(cardiology, aes(x=thalach, y=oldpeak)) + geom_point()
+
+# oldpeak plots
+ggplot(cardiology, aes(x=oldpeak, y=age)) + geom_point()
+ggplot(cardiology, aes(x=oldpeak, y=trestbps)) + geom_point()
+ggplot(cardiology, aes(x=oldpeak, y=cholesterol)) + geom_point()
+ggplot(cardiology, aes(x=oldpeak, y=diastbpexerc)) + geom_point()
+ggplot(cardiology, aes(x=oldpeak, y=thalach)) + geom_point()
+
+# cholesterol plots
+ggplot(cardiology, aes(x=cholesterol, y=age)) + geom_point()
+ggplot(cardiology, aes(x=cholesterol, y=trestbps)) + geom_point()
+ggplot(cardiology, aes(x=cholesterol, y=oldpeak)) + geom_point()
+ggplot(cardiology, aes(x=cholesterol, y=diastbpexerc)) + geom_point()
+ggplot(cardiology, aes(x=cholesterol, y=thalach)) + geom_point()
+
+# Part 1 Question 5 B Verifying assertions 
+# level of correlation for age with other predictor variables
+cor(cardiology$age, cardiology$trestbps)
+cor(cardiology$age, cardiology$cholesterol, use = "complete.obs")
+cor(cardiology$age, cardiology$thalach)
+cor(cardiology$age, cardiology$oldpeak)
+cor(cardiology$age, cardiology$diastbpexerc)
+
+# level of correlation for trestbps with other predictor variables
+cor(cardiology$trestbps, cardiology$age)
+cor(cardiology$trestbps, cardiology$cholesterol, use = "complete.obs")
+cor(cardiology$trestbps, cardiology$thalach)
+cor(cardiology$trestbps, cardiology$oldpeak)
+cor(cardiology$trestbps, cardiology$diastbpexerc)
+
+# level of correlation for diastbpexerc with other predictor variables
+cor(cardiology$diastbpexerc, cardiology$age)
+cor(cardiology$diastbpexerc, cardiology$trestbps)
+cor(cardiology$diastbpexerc, cardiology$cholesterol, use = "complete.obs")
+cor(cardiology$diastbpexerc, cardiology$thalach)
+cor(cardiology$diastbpexerc, cardiology$oldpeak)
+
+# level of correlation for thalach with other predictor variables
+cor(cardiology$thalach, cardiology$age)
+cor(cardiology$thalach, cardiology$trestbps)
+cor(cardiology$thalach, cardiology$cholesterol, use = "complete.obs")
+cor(cardiology$thalach, cardiology$diastbpexerc)
+cor(cardiology$thalach, cardiology$oldpeak)
+
+# level of correlation for oldpeak with other predictor variables
+cor(cardiology$oldpeak, cardiology$age)
+cor(cardiology$oldpeak, cardiology$trestbps)
+cor(cardiology$oldpeak, cardiology$cholesterol, use = "complete.obs")
+cor(cardiology$oldpeak, cardiology$diastbpexerc)
+cor(cardiology$oldpeak, cardiology$thalach)
+
+# level of correlation  for cholesterol with other predictor variables
+cor(cardiology$cholesterol, cardiology$age, use = "complete.obs")
+cor(cardiology$cholesterol, cardiology$trestbps, use = "complete.obs")
+cor(cardiology$cholesterol, cardiology$thalach, use = "complete.obs")
+cor(cardiology$cholesterol, cardiology$oldpeak, use = "complete.obs")
+cor(cardiology$cholesterol, cardiology$diastbpexerc, use = "complete.obs")
 
 
 
