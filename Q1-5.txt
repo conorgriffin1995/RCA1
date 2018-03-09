@@ -35,7 +35,7 @@ sum(is.na(cardiology$ca))
 sum(is.na(cardiology$thal))
 sum(is.na(cardiology$class))
 
-# Part 1 Question 1 B
+# Part 1 Question 1 C
 # Finding MAX 
 max(cardiology$age, na.rm=TRUE)
 max(cardiology$sex, na.rm=TRUE)
@@ -53,7 +53,7 @@ max(cardiology$ca, na.rm = TRUE)
 max(cardiology$thal, na.rm = TRUE)
 max(cardiology$class, na.rm = TRUE)
 
-# Part 1 Question 1 B
+# Part 1 Question 1 C
 # Finding MIN 
 min(cardiology$age, na.rm=TRUE)
 min(cardiology$sex, na.rm=TRUE)
@@ -71,7 +71,7 @@ min(cardiology$ca, na.rm=TRUE)
 min(cardiology$thal, na.rm=TRUE)
 min(cardiology$class, na.rm=TRUE)
 
-# Part 1 Question 1 B
+# Part 1 Question 1 C
 # Finding MEAN 
 mean(cardiology$age, na.rm = TRUE)
 mean(cardiology$sex, na.rm = TRUE)
@@ -89,7 +89,7 @@ mean(cardiology$ca, na.rm = TRUE)
 mean(cardiology$thal, na.rm = TRUE)
 mean(cardiology$class, na.rm = TRUE)
 
-# Part 1 Question 1 B
+# Part 1 Question 1 C
 # Finding Mode Function
 Mode <- function(cardiology){
   ux <- unique(cardiology)
@@ -112,7 +112,7 @@ Mode(cardiology$ca)
 Mode(cardiology$thal)
 Mode(cardiology$class)
 
-# Part 1 Question 1 B
+# Part 1 Question 1 C
 # Finding Median
 median(cardiology$age, na.rm=TRUE)
 median(cardiology$sex, na.rm=TRUE)
@@ -129,7 +129,7 @@ median(cardiology$ca, na.rm=TRUE)
 median(cardiology$thal, na.rm=TRUE)
 median(cardiology$class, na.rm=TRUE)
 
-# Part 1 Question 1 B
+# Part 1 Question 1 C
 #Finding Standard Deviation
 sd(cardiology$age)
 sd(cardiology$sex)
@@ -146,6 +146,18 @@ sd(cardiology$slope)
 sd(cardiology$ca)
 sd(cardiology$thal)
 sd(cardiology$class)
+
+# Part 1 Question 1 D
+# Shapiro-Wilks test for Normality
+shapiro.test(cardiology$age)            # p-value = 0.0007914 -> Deviates From Normality
+shapiro.test(cardiology$trestbps)       # p-value = 8.431e-07 -> Normal Distribution
+shapiro.test(cardiology$cholesterol)    # p-value = 4.548e-09 -> Normal Distribution
+shapiro.test(cardiology$diastbpexerc)   # p-value = 3.104e-07 -> Normal Distribution
+shapiro.test(cardiology$thalach)        # p-value = 5.608e-05 -> Normal Distribution
+# https://stats.stackexchange.com/questions/173893/interpreting-p-value-2-2e-16-in-r
+# oldpeak is < 2.2e-16 means 0.00000000000000022. It is (very much) less than 0.05
+shapiro.test(cardiology$oldpeak)        # p-value < 2.2e-16 -> Deviates From Normal Distribution
+shapiro.test(cardiology$ca)             # p-value < 2.2e-16 -> Deviates From Normality
 
 # Part 1 Question 1 E
 # Skewness and type
@@ -203,6 +215,14 @@ cor(cardiology$cholesterol, cardiology$thalach, use = "complete.obs")
 cor(cardiology$cholesterol, cardiology$oldpeak, use = "complete.obs")
 cor(cardiology$cholesterol, cardiology$diastbpexerc, use = "complete.obs")
 
+# level of correlation for ca with other predictor variables
+cor(cardiology$ca, cardiology$age)
+cor(cardiology$ca, cardiology$trestbps)
+cor(cardiology$ca, cardiology$cholesterol)
+cor(cardiology$ca, cardiology$cholesterol, use = "complete.obs")
+cor(cardiology$ca, cardiology$diastbpexerc)
+cor(cardiology$ca, cardiology$thalach)
+
 # Part 1 Question 2
 # Histogram for each numerical variable, with an overlay of the target variable
 # Histogram for Age
@@ -223,6 +243,9 @@ ggplot(cardiology, aes(x = thalach, fill = class)) + geom_histogram() + ggtitle(
 # Histogram for Oldpeak (ST depression induced by exercise relative to rest of patients)
 ggplot(cardiology, aes(x = oldpeak, fill = class)) + geom_histogram() + ggtitle("ST depression induced by exercise relative to rest of patients") + labs(x = "ST depression induced by exercise relative to rest of patients", y = "Number of patients") + theme_bw()
 
+# Histogram for ca (Number of major vessels)
+ggplot(cardiology, aes(x = ca, fill = class)) + geom_histogram() + ggtitle("Number of major vessels") + labs(x = "ST depression induced by exercise relative to rest of patients", y = "Number of patients") + theme_bw()
+ 
 # Part 1 Question 3
 # BarChart for each categorical variable,with an overlay of the target variable
 # Bar chart for each sex
@@ -246,10 +269,82 @@ ggplot(cardiology, aes(x = slope, fill = class)) + geom_bar() + ggtitle("The slo
 # Bar chart for each thal
 ggplot(cardiology, aes(x = thal, fill = class)) + geom_bar() + ggtitle("Thal") + labs(x = "Thal", y = "Number of patients") + theme_bw()
 
-# Part 1 Question 4
+# Part 1, Question 4:
 # Detect outliers in numerical variables
 cardiologyNumeric <- read.table(file="C:/RCA1/CardiologyNumeric.csv", stringsAsFactors=FALSE, sep=",", header=TRUE)
 outlier(cardiologyNumeric)
+
+# Graphical means of finding outliers.
+# Box Plot of Age vs. Age.
+ggplot(cardiologyNumeric, aes(x = age, y = age)) + geom_boxplot()
+
+# Box Plot of Trestbps vs. Trestbps.
+ggplot(cardiologyNumeric, aes(x = trestbps, y = trestbps)) + geom_boxplot()
+
+# Box Plot of Cholesterol vs. Cholesterol.
+ggplot(cardiologyNumeric, aes(x = cholesterol, y = cholesterol)) + geom_boxplot() 
+
+# Box Plot of Diastbpexercvs. Diastbpexerc.
+ggplot(cardiologyNumeric, aes(x = diastbpexerc, y = diastbpexerc)) + geom_boxplot()
+
+# Box Plot of Thalach vs. Thalach.
+ggplot(cardiologyNumeric, aes(x = thalach, y = thalach)) + geom_boxplot()
+
+# Box Plot of Oldpeak vs. Oldpeak.
+ggplot(cardiologyNumeric, aes(x = oldpeak, y = oldpeak)) + geom_boxplot()
+
+# Box Plot of Ca vs. Ca.
+ggplot(cardiologyNumeric, aes(x = ca, y = ca)) + geom_boxplot()
+
+# Statistical means of finding outliers.
+
+# Made this function to find the outliers of a numeric column.
+# This takes in the attribute and the column number in order to find and print out the outliers.
+# It finds the IQR using the same methods we did in class by getting Q3 - Q1.
+# It then gets the upper and lower bounds (-1.5 IQR and 1.5 IQR) and displays these bounds to the screen.
+# Lastly, it displays all the numeric data outliers from that attribute that are 
+# greater than the upper bound and less than the lower bound.
+geneterateOutliers <- function(arg1, column){
+  # Get your IQR (Interquartile range) and lower/upper quartile using:
+  lowerq = quantile(arg1)[2]
+  upperq = quantile(arg1)[4]
+  iqr = upperq - lowerq #Or use IQR(data)
+  
+  # Compute the bounds for a mild outlier:
+  threshold.upper = (iqr * 1.5) + upperq
+  threshold.lower = lowerq - (iqr * 1.5)
+  
+  # Any age less than the threshold.lower value is an outlier
+  threshold.lower
+  # Any age greater than the threshold.upper value is an outlier
+  threshold.upper
+  
+  print(paste0("Lower outlier bound: ", threshold.lower))
+  print(paste0("Upper outlier bound: ", threshold.upper))
+  
+  GetUpperOutliers <- cardiologyNumeric[which(cardiologyNumeric[,column]>threshold.upper),column]
+  print(paste0("Upper outliers:"))
+  print(GetUpperOutliers)
+  # IF statement to deal with when there are no Upper outliers integer(0)
+  
+  GetLowerOutliers <- cardiologyNumeric[which(cardiologyNumeric[,column]<threshold.lower),column]
+  print(paste0("Lower Outliers:"))
+  print(GetLowerOutliers)
+  # IF statement to deal with when there are no Lower outliers integer(0)
+}
+
+# Generate outliers for all numeric attributes.
+geneterateOutliers(cardiologyNumeric$age, 1)
+geneterateOutliers(cardiologyNumeric$trestbps,2)
+geneterateOutliers(cardiologyNumeric$cholesterol,3)
+geneterateOutliers(cardiologyNumeric$diastbpexerc, 4)
+geneterateOutliers(cardiologyNumeric$thalach, 5)
+geneterateOutliers(cardiologyNumeric$oldpeak, 6)
+geneterateOutliers(cardiologyNumeric$ca, 7)
+
+# Z-Score to detect outliers
+zscoreAge <- (cardiologyNumeric$age - mean(cardiologyNumeric$age, na.rm = TRUE)) / sd(cardiology$age)
+zscoreAge
 
 # Part 1 Question 5 A
 # Investigate whether there are any correlated variables. Using Scatter Plots
