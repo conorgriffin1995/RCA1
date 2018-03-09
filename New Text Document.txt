@@ -139,8 +139,69 @@ sd(cardiology$ca)
 sd(cardiology$thal)
 sd(cardiology$class)
 
-# Histogram for each numerical variable, with an overlay of the target variable
+# Skewness and type
+skewness(cardiology$age)
+skewness(cardiology$trestbps)
+skewness(cardiology$cholesterol, na.rm = TRUE)
+skewness(cardiology$diastbpexerc)
+skewness(cardiology$thalach)
+skewness(cardiology$oldpeak)
+skewness(cardiology$ca)
 
+
+# level of correlation for age with other predictor variables
+cor(cardiology$age, cardiology$trestbps)
+cor(cardiology$age, cardiology$cholesterol, use = "complete.obs")
+cor(cardiology$age, cardiology$thalach)
+cor(cardiology$age, cardiology$oldpeak)
+cor(cardiology$age, cardiology$diastbpexerc)
+
+ggplot(cardiology, aes(x=age, y=trestbps)) + geom_point()
+ggplot(cardiology, aes(x=age, y=cholesterol)) + geom_point()
+ggplot(cardiology, aes(x=age, y=thalach)) + geom_point()
+ggplot(cardiology, aes(x=age, y=oldpeak)) + geom_point()
+ggplot(cardiology, aes(x=age, y=diastbpexerc)) + geom_point()
+
+# level of correlation for trestbps with other predictor variables
+cor(cardiology$trestbps, cardiology$age)
+cor(cardiology$trestbps, cardiology$cholesterol, use = "complete.obs")
+cor(cardiology$trestbps, cardiology$thalach)
+cor(cardiology$trestbps, cardiology$oldpeak)
+cor(cardiology$trestbps, cardiology$diastbpexerc)
+
+ggplot(cardiology, aes(x=trestbps, y=age)) + geom_point()
+ggplot(cardiology, aes(x=trestbps, y=cholesterol)) + geom_point()
+ggplot(cardiology, aes(x=trestbps, y=thalach)) + geom_point()
+ggplot(cardiology, aes(x=trestbps, y=oldpeak)) + geom_point()
+ggplot(cardiology, aes(x=trestbps, y=diastbpexerc)) + geom_point()
+
+# level of correlation for diastbpexerc with other predictor variables
+cor(cardiology$diastbpexerc, cardiology$age)
+cor(cardiology$diastbpexerc, cardiology$trestbps)
+cor(cardiology$diastbpexerc, cardiology$cholesterol, use = "complete.obs")
+cor(cardiology$diastbpexerc, cardiology$thalach)
+cor(cardiology$diastbpexerc, cardiology$oldpeak)
+# level of correlation for thalach with other predictor variables
+cor(cardiology$thalach, cardiology$age)
+cor(cardiology$thalach, cardiology$trestbps)
+cor(cardiology$thalach, cardiology$cholesterol, use = "complete.obs")
+cor(cardiology$thalach, cardiology$diastbpexerc)
+cor(cardiology$thalach, cardiology$oldpeak)
+# level of correlation for oldpeak with other predictor variables
+cor(cardiology$oldpeak, cardiology$age)
+cor(cardiology$oldpeak, cardiology$trestbps)
+cor(cardiology$oldpeak, cardiology$cholesterol, use = "complete.obs")
+cor(cardiology$oldpeak, cardiology$diastbpexerc)
+cor(cardiology$oldpeak, cardiology$thalach)
+# level of correlation  for cholesterol with other predictor variables
+cor(cardiology$cholesterol, cardiology$age, use = "complete.obs")
+cor(cardiology$cholesterol, cardiology$trestbps, use = "complete.obs")
+cor(cardiology$cholesterol, cardiology$thalach, use = "complete.obs")
+cor(cardiology$cholesterol, cardiology$oldpeak, use = "complete.obs")
+cor(cardiology$cholesterol, cardiology$diastbpexerc, use = "complete.obs")
+
+
+# Histogram for each numerical variable, with an overlay of the target variable
 # Histogram for Age
 ggplot(cardiology, aes(x = age, fill = class)) + geom_histogram() + ggtitle("Age of patients") + labs(x = "Age of patients", y = "Number of patients") + theme_bw()
 
@@ -159,28 +220,33 @@ ggplot(cardiology, aes(x = thalach, fill = class)) + geom_histogram() + ggtitle(
 # Histogram for Oldpeak (ST depression induced by exercise relative to rest of patients)
 ggplot(cardiology, aes(x = oldpeak, fill = class)) + geom_histogram() + ggtitle("ST depression induced by exercise relative to rest of patients") + labs(x = "ST depression induced by exercise relative to rest of patients", y = "Number of patients") + theme_bw()
 
-# level of correlation for age with other predictor variables
-cor(cardiology$age, cardiology$trestbps)
-cor(cardiology$age, cardiology$thalach)
-cor(cardiology$age, cardiology$oldpeak)
-cor(cardiology$age, cardiology$diastbpexerc)
-# level of correlation for trestbps with other predictor variables
-cor(cardiology$trestbps, cardiology$age)
-cor(cardiology$trestbps, cardiology$thalach)
-cor(cardiology$trestbps, cardiology$oldpeak)
-cor(cardiology$trestbps, cardiology$diastbpexerc)
-# level of correlation for diastbpexerc with other predictor variables
-cor(cardiology$diastbpexerc, cardiology$age)
-cor(cardiology$diastbpexerc, cardiology$trestbps)
-cor(cardiology$diastbpexerc, cardiology$thalach)
-cor(cardiology$diastbpexerc, cardiology$oldpeak)
-# level of correlation for thalach with other predictor variables
-cor(cardiology$thalach, cardiology$age)
-cor(cardiology$thalach, cardiology$trestbps)
-cor(cardiology$thalach, cardiology$diastbpexerc)
-cor(cardiology$thalach, cardiology$oldpeak)
-# level of correlation for oldpeak with other predictor variables
-cor(cardiology$oldpeak, cardiology$age)
-cor(cardiology$oldpeak, cardiology$trestbps)
-cor(cardiology$oldpeak, cardiology$diastbpexerc)
-cor(cardiology$oldpeak, cardiology$thalach)
+
+
+# BarChart for each categorical variable,with an overlay of the target variable
+# Bar chart for each sex
+ggplot(cardiology, aes(x = sex, fill = class)) + geom_bar() + ggtitle("Sex of patients") + labs(x = "Sex of patient", y = "Number of patients") + theme_bw()
+
+# Bar chart for each cp
+ggplot(cardiology, aes(x = cp, fill = class)) + geom_bar() + ggtitle("Chest pain type") + labs(x = "Chest pain type", y = "Number of patients") + theme_bw()
+
+# Bar chart for each Fasting blood sugar
+ggplot(cardiology, aes(x = Fasting.blood.sugar...120, fill = class)) + geom_bar() + ggtitle("Fasting blood sugar") + labs(x = "Fasting blood sugar", y = "Number of patients") + theme_bw()
+
+# Bar chart for each restecg
+ggplot(cardiology, aes(x = restecg, fill = class)) + geom_bar() + ggtitle("Resting electrocardiographic results") + labs(x = "Resting electrocardiographic results", y = "Number of patients") + theme_bw()
+
+# Bar chart for each exang
+ggplot(cardiology, aes(x = exang, fill = class)) + geom_bar() + ggtitle("Exercise induced angina") + labs(x = "Exercise induced angina ", y = "Number of patients") + theme_bw()
+
+# Bar chart for each slope
+ggplot(cardiology, aes(x = slope, fill = class)) + geom_bar() + ggtitle("The slope of the peak exercise ST segment") + labs(x = "The slope of the peak exercise ST segment", y = "Number of patients") + theme_bw()
+
+# Bar chart for each thal
+ggplot(cardiology, aes(x = thal, fill = class)) + geom_bar() + ggtitle("Thal") + labs(x = "Thal", y = "Number of patients") + theme_bw()
+
+# Detect outliers in numerical variables
+cardiologyNumeric <- read.table(file="C:/RCA1/CardiologyNumeric.csv", stringsAsFactors=FALSE, sep=",", header=TRUE)
+outlier(cardiologyNumeric)
+
+
+
