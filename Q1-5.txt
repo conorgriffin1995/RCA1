@@ -276,7 +276,7 @@ outlier(cardiologyNumeric)
 
 # Graphical means of finding outliers.
 # Box Plot of Age vs. Age.
-ggplot(cardiologyNumeric, aes(x = age, y = age)) + geom_boxplot()
+ggplot(cardiology, aes(x = age, y = classNumeric)) + geom_boxplot()
 
 # Box Plot of Trestbps vs. Trestbps.
 ggplot(cardiologyNumeric, aes(x = trestbps, y = trestbps)) + geom_boxplot()
@@ -426,12 +426,14 @@ cor(cardiology$oldpeak, cardiology$cholesterol, use = "complete.obs")
 cor(cardiology$oldpeak, cardiology$diastbpexerc)
 cor(cardiology$oldpeak, cardiology$thalach)
 
-# level of correlation  for cholesterol with other predictor variables
+# level of correlation for cholesterol with other predictor variables
 cor(cardiology$cholesterol, cardiology$age, use = "complete.obs")
 cor(cardiology$cholesterol, cardiology$trestbps, use = "complete.obs")
 cor(cardiology$cholesterol, cardiology$thalach, use = "complete.obs")
 cor(cardiology$cholesterol, cardiology$oldpeak, use = "complete.obs")
 cor(cardiology$cholesterol, cardiology$diastbpexerc, use = "complete.obs")
 
-
+# Converting class to classNumeric 1 || 0
+cardiology$classNumeric[cardiology$class=="Sick"]<-"0" 
+cardiology$classNumeric[cardiology$class=="Healthy"]<-"1" 
 
