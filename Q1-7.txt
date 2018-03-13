@@ -272,7 +272,6 @@ ggplot(cardiology, aes(x = thal, fill = class)) + geom_bar() + ggtitle("Thal") +
 # Part 1, Question 4:
 # Detect outliers in numerical variables
 cardiologyNumeric <- read.table(file="C:/RCA1/CardiologyNumeric.csv", stringsAsFactors=FALSE, sep=",", header=TRUE)
-outlier(cardiologyNumeric)
 
 # Graphical means of finding outliers.
 # Box Plot of Age vs. Age.
@@ -297,14 +296,13 @@ ggplot(cardiologyNumeric, aes(x = oldpeak, y = oldpeak)) + geom_boxplot()
 ggplot(cardiologyNumeric, aes(x = ca, y = ca)) + geom_boxplot()
 
 # Statistical means of finding outliers.
-
 # Made this function to find the outliers of a numeric column.
 # This takes in the attribute and the column number in order to find and print out the outliers.
 # It finds the IQR using the same methods we did in class by getting Q3 - Q1.
 # It then gets the upper and lower bounds (-1.5 IQR and 1.5 IQR) and displays these bounds to the screen.
 # Lastly, it displays all the numeric data outliers from that attribute that are 
 # greater than the upper bound and less than the lower bound.
-geneterateOutliers <- function(arg1, column){
+IQRangeOutliers <- function(arg1, column){
   # Get your IQR (Interquartile range) and lower/upper quartile using:
   lowerq = quantile(arg1)[2]
   upperq = quantile(arg1)[4]
@@ -333,18 +331,39 @@ geneterateOutliers <- function(arg1, column){
   # IF statement to deal with when there are no Lower outliers integer(0)
 }
 
-# Generate outliers for all numeric attributes.
-geneterateOutliers(cardiologyNumeric$age, 1)
-geneterateOutliers(cardiologyNumeric$trestbps,2)
-geneterateOutliers(cardiologyNumeric$cholesterol,3)
-geneterateOutliers(cardiologyNumeric$diastbpexerc, 4)
-geneterateOutliers(cardiologyNumeric$thalach, 5)
-geneterateOutliers(cardiologyNumeric$oldpeak, 6)
-geneterateOutliers(cardiologyNumeric$ca, 7)
+# IQR outliers for all numeric attributes.
+IQRangeOutliers(cardiologyNumeric$age, 1)
+IQRangeOutliers(cardiologyNumeric$trestbps,2)
+IQRangeOutliers(cardiologyNumeric$cholesterol,3)
+IQRangeOutliers(cardiologyNumeric$diastbpexerc, 4)
+IQRangeOutliers(cardiologyNumeric$thalach, 5)
+IQRangeOutliers(cardiologyNumeric$oldpeak, 6)
+IQRangeOutliers(cardiologyNumeric$ca, 7)
 
-# Z-Score to detect outliers
-zscoreAge <- (cardiologyNumeric$age - mean(cardiologyNumeric$age, na.rm = TRUE)) / sd(cardiology$age)
-zscoreAge
+# Z-Score function to detect outliers
+zscoreOutliers <- function(arg1){
+  # Find Z-score for argument passed in.
+  zscoreOutlier <- (arg1 - mean(arg1, na.rm = TRUE)) / sd(arg1)
+  
+  # Find upper Z-score outliers (Any score greater than 3).
+  GetUpperZscoreOutliers <-  zscoreOutlier[which(zscoreOutlier > 3)]
+  print(paste0("Upper Z-Score outliers:"))
+  print(GetUpperZscoreOutliers)
+  
+  # Find lower Z-score outliers (Any score less than 3).
+  GetLowerZscoreOutliers <- zscoreOutlier[which(zscoreOutlier < -3)]
+  print(paste0("Lower Z-Score outliers:"))
+  print(GetLowerZscoreOutliers)
+}
+
+# Generate z-score outliers for all numeric attributes.
+zscoreOutliers(cardiologyNumeric$age)
+zscoreOutliers(cardiologyNumeric$trestbps)
+zscoreOutliers(cardiologyNumeric$cholesterol)
+zscoreOutliers(cardiologyNumeric$diastbpexerc)
+zscoreOutliers(cardiologyNumeric$thalach)
+zscoreOutliers(cardiologyNumeric$oldpeak)
+zscoreOutliers(cardiologyNumeric$ca)
 
 # Part 1 Question 5 A
 # Investigate whether there are any correlated variables. Using Scatter Plots
@@ -432,6 +451,115 @@ cor(cardiology$cholesterol, cardiology$trestbps, use = "complete.obs")
 cor(cardiology$cholesterol, cardiology$thalach, use = "complete.obs")
 cor(cardiology$cholesterol, cardiology$oldpeak, use = "complete.obs")
 cor(cardiology$cholesterol, cardiology$diastbpexerc, use = "complete.obs")
+
+# Part 1 Question 5 C, 
+# Age plots
+ggplot(cardiology, aes(x=age, y=trestbps, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=age, y=cholesterol, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=age, y=thalach, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=age, y=oldpeak, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=age, y=diastbpexerc, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+
+# trestbps plots
+ggplot(cardiology, aes(x=trestbps, y=age, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=trestbps, y=cholesterol, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=trestbps, y=thalach, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=trestbps, y=oldpeak, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=trestbps, y=diastbpexerc, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+
+# diastbpexerc plots
+ggplot(cardiology, aes(x=diastbpexerc, y=age, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=diastbpexerc, y=trestbps, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=diastbpexerc, y=cholesterol, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=diastbpexerc, y=thalach, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=diastbpexerc, y=oldpeak, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+
+# thalach plots
+ggplot(cardiology, aes(x=thalach, y=age, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=thalach, y=trestbps, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=thalach, y=cholesterol, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=thalach, y=diastbpexerc, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=thalach, y=oldpeak, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+
+# oldpeak plots
+ggplot(cardiology, aes(x=oldpeak, y=age, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=oldpeak, y=trestbps, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=oldpeak, y=cholesterol, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=oldpeak, y=diastbpexerc, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=oldpeak, y=thalach, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+
+# cholesterol plots
+ggplot(cardiology, aes(x=cholesterol, y=age, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=cholesterol, y=trestbps, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=cholesterol, y=oldpeak, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=cholesterol, y=diastbpexerc, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+ggplot(cardiology, aes(x=cholesterol, y=thalach, color = class)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+
+# Part 2 Question 7.
+# Using one numeric variable which is skewed (Thalach (Negatively Skewed)), 
+# transform the data using the following methods to achieve normailty:
+#   A.) Z-Score Standardisation.
+#   B.) Natural Log Transformation.
+#   C.) Square Root Transformation.
+#   D.) Inverse Square Roor Transformation.
+
+# A.) Z Score Standardisation.
+zscoreMinThalach <- (min(cardiologyNumeric$thalach) - mean(cardiologyNumeric$thalach)) / sd(cardiologyNumeric$thalach)
+zscoreMinThalach
+# Data values below the mean will have a negative z-score standardisation.
+
+zscoreRangeThalach <- ((max(cardiologyNumeric$thalach) - min(cardiologyNumeric$thalach)) - mean(cardiologyNumeric$thalach)) / sd(cardiologyNumeric$thalach)
+zscoreRangeThalach
+# Values falling on the mean will have zero (0) z score. (negative in this case)
+
+zscoreMaxThalach <- (max(cardiologyNumeric$thalach) - mean(cardiologyNumeric$thalach)) / sd(cardiologyNumeric$thalach)
+zscoreMaxThalach
+# Data values above the mean will have a positive Z-score standardisation.
+
+
+
+# B.) Natural Log Transformation.
+naturalLogMinThalach <- log(min(cardiologyNumeric$thalach))
+naturalLogMinThalach
+# (4.26268) Data values below the mean will have a 
+
+naturalLogRangeThalach <- log(max(cardiologyNumeric$thalach) - min(cardiologyNumeric$thalach))
+naturalLogRangeThalach
+# (4.875197) Values falling on the mean will have a  
+
+naturalLogMaxThalach <- log(max(cardiologyNumeric$thalach))
+naturalLogMaxThalach
+# (5.308268) Data values above the mean will have a 
+
+
+
+# C.) Square Root Transformation.
+sqrtMinThalach <- sqrt(min(cardiologyNumeric$thalach))
+sqrtMinThalach
+# (8.42615) Data values below the mean will have a
+
+sqrtRangeThalach <- sqrt((max(cardiologyNumeric$thalach) - min(cardiologyNumeric$thalach)))
+sqrtRangeThalach
+# (11.44552) Values falling on the mean will have 
+
+sqrtMaxThalach <- sqrt(max(cardiologyNumeric$thalach))
+sqrtMaxThalach
+# (14.21267) Data values above the mean will have a 
+
+
+
+# D.) Inverse Square Root Transformation.
+invSqrtMinThalach <- 1/(sqrt(min(cardiologyNumeric$thalach)))
+invSqrtMinThalach
+# (0.1186782) Data values below the mean will have a
+
+invSqrtRangeThalach <- 1/(sqrt((max(cardiologyNumeric$thalach) - min(cardiologyNumeric$thalach))))
+invSqrtRangeThalach
+# (0.08737041) Values falling on the mean will have 
+
+invSqrtMaxThalach <- 1/(sqrt(max(cardiologyNumeric$thalach)))
+invSqrtMaxThalach
+# (0.07035975) Data values above the mean will have a 
 
 # Converting class to classNumeric 1 || 0
 cardiology$classNumeric[cardiology$class=="Sick"]<-"0" 
