@@ -1,0 +1,22 @@
+@relation 'CardiologyRel-weka.filters.unsupervised.attribute.Reorder-R1,2,3,4,5,6,8,9,10,11,12,13,14,15,7'
+
+@attribute age numeric
+@attribute sex {Male,Female}
+@attribute cp {' Asymptomatic','Abnormal Angina',Angina,Asymptomatic,NoTang}
+@attribute trestbps numeric
+@attribute cholesterol numeric
+@attribute 'Fasting blood sugar < 120' {FALSE,TRUE}
+@attribute diastbpexerc numeric
+@attribute thalach numeric
+@attribute exang {TRUE,FALSE}
+@attribute oldpeak numeric
+@attribute slope {Flat,Up,Down}
+@attribute ca numeric
+@attribute thal {Rev,Normal,Fix}
+@attribute restecg {Hyp,Normal,Abnormal}
+
+@data
+65,Female,' Asymptomatic',150,225,FALSE,96,114,FALSE,1,Flat,3,Rev,?
+52,Male,NoTang,138,223,FALSE,88.32,169,FALSE,0,Up,0,Normal,?
+53,Male,NoTang,130,197,TRUE,83.2,152,FALSE,1.2,Down,0,Normal,?
+46,Female,NoTang,142,177,FALSE,90.88,160,TRUE,1.4,Down,0,Normal,?

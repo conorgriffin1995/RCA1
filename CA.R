@@ -381,6 +381,8 @@ ggplot(cardiology, aes(x=trestbps, y=thalach)) + geom_point()
 ggplot(cardiology, aes(x=trestbps, y=oldpeak)) + geom_point()
 ggplot(cardiology, aes(x=trestbps, y=diastbpexerc)) + geom_point()
 
+ggplot(cardiology, aes(x=ca, y=age)) + geom_point()
+
 # diastbpexerc plots
 ggplot(cardiology, aes(x=diastbpexerc, y=age)) + geom_point()
 ggplot(cardiology, aes(x=diastbpexerc, y=trestbps)) + geom_point()
@@ -560,6 +562,11 @@ invSqrtRangeThalach
 invSqrtMaxThalach <- 1/(sqrt(max(cardiologyNumeric$thalach)))
 invSqrtMaxThalach
 # (0.07035975) Data values above the mean will have a 
+
+# Part 2 Question 8
+# converting string to numeric 
+as.numeric(cardiology$cholesterol)
+
 
 # Converting class to classNumeric 1 || 0
 cardiology$classNumeric[cardiology$class=="Sick"]<-"0" 
